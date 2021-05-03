@@ -1,4 +1,8 @@
 # convert-to-webp
+[![ci](https://github.com/nekochans/convert-to-webp/actions/workflows/ci.yml/badge.svg)](https://github.com/nekochans/convert-to-webp/actions/workflows/ci.yml)
+[![cd-staging](https://github.com/nekochans/convert-to-webp/actions/workflows/cd-staging.yml/badge.svg)](https://github.com/nekochans/convert-to-webp/actions/workflows/cd-staging.yml)
+[![cd-production](https://github.com/nekochans/convert-to-webp/actions/workflows/cd-production.yml/badge.svg)](https://github.com/nekochans/convert-to-webp/actions/workflows/cd-production.yml)
+
 S3にアップロードされた画像をWebpに変換するLambda関数です。
 
 ## Getting Started
@@ -34,6 +38,8 @@ export DESTINATION_BUCKET_NAME=変換済のWebp画像がアップロードされ
 Webpフォーマットへの変換は [sharp](https://github.com/lovell/sharp) を利用しているので、予めビルドされたネイティブモジュール（バイナリ）がLambdaの実行環境と異なると正常に動作しません。
 
 詳しくは [AWS Lambda(Node.js)にsharp(Native Module)をデプロイする方法](https://dev.classmethod.jp/articles/how-to-deploy-with-native-module/) をご覧下さい。
+
+GitHubActionsを利用した自動デプロイでも上記の手順を用いてDocker内でデプロイを行っています。
 
 ## Lambda関数の仕様
 
