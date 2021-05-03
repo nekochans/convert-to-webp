@@ -1,0 +1,46 @@
+name: cd-staging
+
+on:
+  push:
+    branches:
+      - main
+
+jobs:
+  deploy:
+    name: Deploy To Staging
+    runs-on: ubuntu-latest
+    env:
+      DEPLOY_STAGE: stg
+      AWS_PROFILE: lgtm-cat
+      TRIGGER_BUCKET_NAME: ${{ secrets.STG_TRIGGER_BUCKET_NAME }}
+      DESTINATION_BUCKET_NAME: ${{ secrets.STG_DESTINATION_BUCKET_NAME }}
+    timeout-minutes: 5
+    strategy:
+      matrix:
+        node-version: [14.x]
+    steps:
+      - uses: actions/checkout@v2
+      - name: Use Node.js ${{ matrix.node-version }}
+        uses: actions/setup-node@v1
+        with:
+          node-version: ${{ matrix.node-version }}
+      - name: Configure AWS credentials
+        uses: aws-actions/configure-aws-credentials@v1
+        with:
+          aws-access-key-id: ${{ secrets.LGTM_CAT_SERVERLESS_DEPLOY_AWS_ACCESS_KEY_ID }}
+          aws-secret-access-key: ${{ secrets.LGTM_CAT_SERVERLESS_DEPLOY_AWS_SECRET_ACCESS_KEY }}
+          aws-region: ap-northeast-1
+      - name: Add profile credentials to ~/.aws/credentials
+        env:
+          STG_AWS_ACCESS_KEY_ID: ${{ secrets.LGTM_CAT_SERVERLESS_DEPLOY_AWS_ACCESS_KEY_ID }}
+          STG_AWS_SECRET_ACCESS_KEY: ${{ secrets.LGTM_CAT_SERVERLESS_DEPLOY_AWS_SECRET_ACCESS_KEY }}
+        run: |
+          aws configure set aws_access_key_id $STG_AWS_ACCESS_KEY_ID --profile $AWS_PROFILE
+          aws configure set aws_secret_access_key $STG_AWS_SECRET_ACCESS_KEY --profile $AWS_PROFILE
+      - name: Docker set up
+        run: |
+          docker-compose up --build -d
+      - name: Deploy To AWS(stg)
+        run: |
+          docker-compose exec -T node yarn install
+          docker-compose exec -T node yarn run deploy
