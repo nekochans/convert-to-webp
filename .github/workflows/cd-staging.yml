@@ -42,5 +42,5 @@ jobs:
           docker-compose up --build -d
       - name: Deploy To AWS(stg)
         run: |
-          docker-compose exec -T node yarn install
-          docker-compose exec -T node yarn run deploy
+          docker-compose exec -T node npm ci
+          docker-compose exec -T node npm run deploy
