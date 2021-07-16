@@ -1,1 +1,4 @@
 node_modules/
+.serverless/
+.eslintrc.js
+*.config.js
