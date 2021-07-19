@@ -30,9 +30,9 @@ const serverlessConfiguration: AWS = {
             Effect: 'Allow',
             Action: ['s3:*'],
             Resource: '*',
-          }
-        ]
-      }
+          },
+        ],
+      },
     },
     environment: {
       AWS_NODEJS_CONNECTION_REUSE_ENABLED: '1',
