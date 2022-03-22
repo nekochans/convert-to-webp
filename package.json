@@ -4,8 +4,8 @@
   "description": "S3にアップロードされた画像をWebpに変換する",
   "main": "serverless.ts",
   "scripts": {
-    "deploy": "serverless deploy -v",
-    "remove": "serverless remove -v",
+    "deploy": "serverless deploy --verbose",
+    "remove": "serverless remove --verbose",
     "lint:prettier": "prettier --check .",
     "fix:prettier": "npm run lint:prettier -- --write",
     "lint:eslint": "eslint .",
