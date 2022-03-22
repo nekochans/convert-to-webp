@@ -31,8 +31,8 @@ export DESTINATION_BUCKET_NAME=変換済のWebp画像がアップロードされ
 
 1. `docker-compose up --build -d` でコンテナを起動します
 1. `docker-compose exec node bash` でコンテナに入る
-1. `yarn install` で依存パッケージをインストール
-1. `yarn run deploy` を実行する
+1. `npm ci` で依存パッケージをインストール
+1. `npm run deploy` を実行する
 
 必ず Docker コンテナ内でこれらの作業を行って下さい。
 
