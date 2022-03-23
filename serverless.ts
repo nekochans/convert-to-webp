@@ -4,7 +4,7 @@ import convertToWebp from '@functions/convertToWebp';
 
 const serverlessConfiguration: AWS = {
   service: 'convert-to-webp',
-  frameworkVersion: '2',
+  frameworkVersion: '3',
   custom: {
     webpack: {
       webpackConfig: './webpack.config.js',
