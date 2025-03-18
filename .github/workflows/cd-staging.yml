@@ -40,7 +40,7 @@ jobs:
           aws configure set aws_secret_access_key $STG_AWS_SECRET_ACCESS_KEY --profile $AWS_PROFILE
       - name: Docker set up
         run: |
-          docker-compose up --build -d
+          docker compose up --build -d
       - name: Deploy To AWS(stg)
         run: |
           docker compose exec -T node npm ci
