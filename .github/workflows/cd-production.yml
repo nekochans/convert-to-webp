@@ -42,5 +42,5 @@ jobs:
           docker-compose up --build -d
       - name: Deploy To AWS(prod)
         run: |
-          docker-compose exec -T node npm ci
-          docker-compose exec -T node npm run deploy
+          docker compose exec -T node npm ci
+          docker compose exec -T node npm run deploy
