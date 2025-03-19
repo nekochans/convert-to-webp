@@ -18,7 +18,7 @@ const serverlessConfiguration: AWS = {
   plugins: ['serverless-webpack', 'serverless-prune-plugin'],
   provider: {
     name: 'aws',
-    runtime: 'nodejs14.x',
+    runtime: 'nodejs20.x',
     stage: process.env.DEPLOY_STAGE,
     region: 'ap-northeast-1',
     profile: process.env.AWS_PROFILE,
